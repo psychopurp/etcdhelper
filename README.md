@@ -9,7 +9,9 @@ This is a copy of <https://github.com/openshift/origin/tree/master/tools/etcdhel
 
 ## How to build
 
-    go build .
+```bash
+go build .
+```
 
 ## Basic Usage
 
