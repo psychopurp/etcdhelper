@@ -1,18 +1,16 @@
-FROM golang:1.22.1 AS build
+FROM golang:1.22.1-alpine AS builder
 
 WORKDIR /app
 
 COPY go.mod go.sum ./
-
 RUN go mod download
 
 COPY . .
 
-RUN go build -o main .
+RUN go build -o etcdhelper .
 
-FROM gcr.io/distroless/base-debian10
+FROM alpine:latest
 
+WORKDIR /root/
 
-COPY --from=build /app/main /app/etcdhelper
-
-ENTRYPOINT ["/app/etcdhelper"]
+COPY --from=builder /app/etcdhelper /usr/bin/etcdhelper
