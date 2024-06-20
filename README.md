@@ -2,14 +2,14 @@
 
 A helper tool for getting OpenShift/Kubernetes data directly from Etcd.
 
-This is a copy of https://github.com/openshift/origin/tree/master/tools/etcdhelper with following changes:
+This is a copy of <https://github.com/openshift/origin/tree/master/tools/etcdhelper> with following changes:
 
 * `get` - will output the resource as yaml
 * `dump` - will save the entire contents of etcd to individual yaml files
 
 ## How to build
 
-    $ go build .
+    go build .
 
 ## Basic Usage
 
@@ -24,7 +24,6 @@ Once these are set properly, one can invoke the following actions:
 * `ls` - list all keys starting with prefix
 * `get` - get the specific value of a key
 * `dump` - save the entire contents of etcd to individual files
-
 
 ## Sample Usage
 
