@@ -1,11 +1,32 @@
-# Etcd helper
+# Etcd Helper
 
 A helper tool for getting OpenShift/Kubernetes data directly from Etcd.
 
-This is a copy of <https://github.com/openshift/origin/tree/master/tools/etcdhelper> with following changes:
+This is a copy of <https://github.com/openshift/origin/tree/master/tools/etcdhelper> with Docker support.
 
-* `get` - will output the resource as yaml
-* `dump` - will save the entire contents of etcd to individual yaml files
+## How to Use
+
+### Connecting to Etcd
+
+* Connect the Docker container's network with the Etcd server, or connect by using the `endpoint` parameter.
+
+### Output in JSON Format
+
+```bash
+docker run --rm --network container:etcd-server cr.sihe.cloud/docker.io/psychopurp/etcdhelper:latest /bin/sh -c "
+    etcdhelper get /registry/deployments/default/nginx-deployment
+"
+```
+
+### Output in YAML Format
+
+* Using yq to convert JSON to YAML format:
+
+```bash
+docker run --rm --network container:etcd-server cr.sihe.cloud/docker.io/psychopurp/etcdhelper:latest /bin/sh -c "
+    etcdhelper get /registry/deployments/default/nginx-deployment
+" | yq -P e -
+```
 
 ## How to build
 
